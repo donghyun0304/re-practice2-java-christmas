@@ -34,7 +34,7 @@ public class EventDate {
     }
 
     public boolean contains(List<DayOfWeek> dayOfWeeks){
-        return dayOfWeeks.contains(date);
+        return dayOfWeeks.contains(date.getDayOfWeek());
     }
 
     public boolean isSameDay(int day){
