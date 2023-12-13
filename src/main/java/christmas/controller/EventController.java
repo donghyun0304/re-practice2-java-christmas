@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.domain.EventDate;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
@@ -15,6 +16,6 @@ public class EventController {
 
     public void run(){
         outputView.printStart();
-        inputView.inputDate();
+        EventDate eventDate = inputView.inputDate();
     }
 }

@@ -25,4 +25,5 @@ public class EventDate {
         }
         return new EventDate(LocalDate.of(YEAR, MONTH, day));
     }
+
 }
