@@ -13,4 +13,16 @@ public class RetryUtil {
             }
         }
     }
+
+    public static <T> T getInputForDay(Supplier<T> inputSupplier){
+        while(true){
+            try{
+                return inputSupplier.get();
+            } catch (IllegalArgumentException e){
+                System.out.println("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            } catch (IllegalStateException e){
+                System.out.println("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            }
+        }
+    }
 }

@@ -14,6 +14,7 @@ public class EventController {
     }
 
     public void run(){
-
+        outputView.printStart();
+        inputView.inputDate();
     }
 }
