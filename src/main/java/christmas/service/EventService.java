@@ -4,6 +4,7 @@ import christmas.domain.discount.ChristmasDiscount;
 import christmas.domain.discount.Discount;
 import christmas.domain.discount.Discounts;
 import christmas.domain.EventDate;
+import christmas.domain.discount.WeekdayDiscount;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class EventService {
             discounts.add(ChristmasDiscount.create(eventDate));
         }
         if(isDateInEventDays(WEEKDAYS, eventDate)){
-
+            discounts.add(WeekdayDiscount.create(eventDate));
         }
         if(isDateInEventDays(WEEKENDS, eventDate)){
 
