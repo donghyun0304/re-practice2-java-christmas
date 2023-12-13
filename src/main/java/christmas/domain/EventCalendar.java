@@ -2,8 +2,10 @@ package christmas.domain;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public enum EventCalendar {
 
@@ -37,5 +39,9 @@ public enum EventCalendar {
 
     private static boolean containsInDayOfWeek(EventDate eventDate, List<DayOfWeek> dayOfWeeks){
         return eventDate.contains(dayOfWeeks);
+    }
+
+    public static boolean isDateInEventDays(EventCalendar eventCalendar, EventDate eventDate) {
+        return eventCalendar.predicate.test(eventDate);
     }
 }

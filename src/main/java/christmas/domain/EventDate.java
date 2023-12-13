@@ -41,4 +41,8 @@ public class EventDate {
         return date.getDayOfMonth() == day;
     }
 
+    public int getDay(){
+        return date.getDayOfMonth();
+    }
+
 }
