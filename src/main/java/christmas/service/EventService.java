@@ -1,10 +1,7 @@
 package christmas.service;
 
-import christmas.domain.discount.ChristmasDiscount;
-import christmas.domain.discount.Discount;
-import christmas.domain.discount.Discounts;
+import christmas.domain.discount.*;
 import christmas.domain.EventDate;
-import christmas.domain.discount.WeekdayDiscount;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +19,7 @@ public class EventService {
             discounts.add(WeekdayDiscount.create(eventDate));
         }
         if(isDateInEventDays(WEEKENDS, eventDate)){
-
+            discounts.add(WeekendDiscount.create(eventDate));
         }
         return new Discounts(discounts);
     }
