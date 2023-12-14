@@ -20,5 +20,9 @@ public class Order {
         return new Order(orderedFoods, discounts, conditions);
     }
 
+    public int calcTotalPriceBeforeDiscount(){
+        return orderedFoods.calcTotalPrice();
+    }
+
 
 }

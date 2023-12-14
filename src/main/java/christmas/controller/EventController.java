@@ -36,7 +36,7 @@ public class EventController {
         Conditions conditions = new Conditions(conditionGroup);
 
         Order order = Order.of(foods, discounts, conditions);
-
+        int totalPriceBeforeDiscount = order.calcTotalPriceBeforeDiscount();
 
     }
 }

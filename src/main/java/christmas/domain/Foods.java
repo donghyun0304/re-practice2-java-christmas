@@ -11,6 +11,11 @@ public class Foods {
         this.foods = foods;
     }
 
+    public int calcTotalPrice(){
+        return foods.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
+                .sum();
+    }
 //    @Override
 //    public String toString() {
 //        return "Foods{" +

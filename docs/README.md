@@ -63,7 +63,7 @@ EventDate
 - (완료) dayOfMonth를 반환한다._
 
 Order
-
+- (완료)할인 전 총주문 금액을 계산한다
 
 Condition
 
