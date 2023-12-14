@@ -35,16 +35,16 @@ public class Order {
     public int calcChristmasDiscount(){
         Optional<Discount> discount = discounts.findDiscount(ChristmasDiscount.class);
         Optional<Condition> condition = conditions.findCondition(EventCondition.class);
-        if(discount.isEmpty() || condition.isEmpty()){
+        if(discount.isEmpty() || condition.isEmpty() || !condition.get().isValid(calcTotalPriceBeforeDiscount())){
             return ZERO;
         }
-        return discount.get().getPrice();
+            return discount.get().getPrice();
     }
 
     public int calcWeekdayDiscount(){
         Optional<Discount> discount = discounts.findDiscount(WeekdayDiscount.class);
         Optional<Condition> condition = conditions.findCondition(EventCondition.class);
-        if(discount.isEmpty() || condition.isEmpty()){
+        if(discount.isEmpty() || condition.isEmpty() || !condition.get().isValid(calcTotalPriceBeforeDiscount())){
             return ZERO;
         }
         return orderedFoods.getAmountOfFoodInCategory(Menu.DESSERT) * discount.get().getPrice();
@@ -53,7 +53,7 @@ public class Order {
     public int calcWeekendDiscount(){
         Optional<Discount> discount = discounts.findDiscount(WeekendDiscount.class);
         Optional<Condition> condition = conditions.findCondition(EventCondition.class);
-        if(discount.isEmpty() || condition.isEmpty()){
+        if(discount.isEmpty() || condition.isEmpty() || !condition.get().isValid(calcTotalPriceBeforeDiscount())){
             return ZERO;
         }
         return orderedFoods.getAmountOfFoodInCategory(Menu.MAIN) * discount.get().getPrice();
@@ -62,7 +62,7 @@ public class Order {
     public int calcSpecialDiscount(){
         Optional<Discount> discount = discounts.findDiscount(SpecialDiscount.class);
         Optional<Condition> condition = conditions.findCondition(EventCondition.class);
-        if(discount.isEmpty() || condition.isEmpty()){
+        if(discount.isEmpty() || condition.isEmpty() || !condition.get().isValid(calcTotalPriceBeforeDiscount())){
             return ZERO;
         }
         return discount.get().getPrice();
@@ -70,10 +70,29 @@ public class Order {
 
     public Optional<Present> getPresent(){
         Optional<Condition> condition = conditions.findCondition(PresentCondition.class);
-        if(condition.isEmpty()){
+        if(condition.isEmpty() || !condition.get().isValid(calcTotalPriceBeforeDiscount())){
             return Optional.empty();
         }
         return Optional.of(new Present());
+    }
+
+    public int calcPresentPrice(){
+        if(getPresent().isEmpty()){
+            return ZERO;
+        }
+        return getPresent().get().getPrice();
+    }
+
+    public int calcTotalDiscountPrice(){
+        return calcChristmasDiscount() + calcWeekdayDiscount() + calcWeekendDiscount() + calcSpecialDiscount();
+    }
+
+    public int calcTotalBenefitPrice(){
+        return calcTotalDiscountPrice() + calcPresentPrice();
+    }
+
+    public int calcTotalPriceAfterDiscount(){
+        return calcTotalPriceBeforeDiscount() - calcTotalDiscountPrice();
     }
 
 

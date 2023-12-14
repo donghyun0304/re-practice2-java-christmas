@@ -47,6 +47,13 @@ public class EventController {
         System.out.println("weekendDiscount = " + weekendDiscount);
         int specialDiscount = order.calcSpecialDiscount();
         System.out.println("specialDiscount = " + specialDiscount);
-        
+
+        int discountPrice = order.calcTotalDiscountPrice();
+        System.out.println("discountPrice = " + discountPrice);
+        int totalBenefitPrice = order.calcTotalBenefitPrice();
+        System.out.println("totalBenefitPrice = " + totalBenefitPrice);
+
+        int totalPriceAfterDiscount = order.calcTotalPriceAfterDiscount();
+        System.out.println("totalPriceAfterDiscount = " + totalPriceAfterDiscount);
     }
 }
