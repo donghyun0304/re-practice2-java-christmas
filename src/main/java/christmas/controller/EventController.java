@@ -1,9 +1,6 @@
 package christmas.controller;
 
-import christmas.domain.EventDate;
-import christmas.domain.Foods;
-import christmas.domain.Order;
-import christmas.domain.Present;
+import christmas.domain.*;
 import christmas.domain.condition.*;
 import christmas.domain.discount.Discounts;
 import christmas.service.EventService;
@@ -55,5 +52,6 @@ public class EventController {
 
         int totalPriceAfterDiscount = order.calcTotalPriceAfterDiscount();
         System.out.println("totalPriceAfterDiscount = " + totalPriceAfterDiscount);
+
     }
 }

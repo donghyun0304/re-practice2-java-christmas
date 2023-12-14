@@ -95,6 +95,9 @@ public class Order {
         return calcTotalPriceBeforeDiscount() - calcTotalDiscountPrice();
     }
 
+    public Optional<Basi> getBasi(){
+        return Basi.find(calcTotalBenefitPrice());
+    }
 
 
 }
