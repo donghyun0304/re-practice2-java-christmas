@@ -11,4 +11,8 @@ public class Present {
     public int getPrice(){
         return food.getPrice();
     }
+
+    public String getName(){
+        return food.getName();
+    }
 }

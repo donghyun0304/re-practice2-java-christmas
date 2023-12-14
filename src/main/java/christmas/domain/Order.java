@@ -7,6 +7,7 @@ import christmas.domain.condition.PresentCondition;
 import christmas.domain.discount.*;
 
 import javax.swing.text.html.Option;
+import java.util.Map;
 import java.util.Optional;
 
 public class Order {
@@ -99,5 +100,8 @@ public class Order {
         return Basi.find(calcTotalBenefitPrice());
     }
 
+    public Map<Food, Integer> getOrderedFoods(){
+        return orderedFoods.getFoods();
+    }
 
 }

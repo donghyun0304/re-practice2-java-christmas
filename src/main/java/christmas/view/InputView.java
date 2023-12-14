@@ -33,6 +33,7 @@ public class InputView {
             InputValidator.validateValidOrderedNumber(menus);
             InputValidator.validateDuplicateNames(menus);
             InputValidator.validateFoodSize(menus);
+            InputValidator.validateOnlyDrinks(menus);
             return new Foods(InputConverter.parseFoods(menus));
         });
     }

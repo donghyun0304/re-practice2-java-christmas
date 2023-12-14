@@ -28,30 +28,12 @@ public class EventController {
         EventDate eventDate = inputView.inputDate();
         Foods foods = inputView.inputMenu();
         Discounts discounts = eventService.findDiscounts(eventDate);
-        System.out.println("discounts = " + discounts);
-
         List<Condition> conditionGroup
                 = new ArrayList<>(List.of(new EventCondition(), new BasiCondition(), new PresentCondition()));
         Conditions conditions = new Conditions(conditionGroup);
 
         Order order = Order.of(foods, discounts, conditions);
-        int totalPriceBeforeDiscount = order.calcTotalPriceBeforeDiscount();
-        int christmasDiscount = order.calcChristmasDiscount();
-        System.out.println("christmasDiscount = " + christmasDiscount);
-        int weekdayDiscount = order.calcWeekdayDiscount();
-        System.out.println("weekdayDiscount = " + weekdayDiscount);
-        int weekendDiscount = order.calcWeekendDiscount();
-        System.out.println("weekendDiscount = " + weekendDiscount);
-        int specialDiscount = order.calcSpecialDiscount();
-        System.out.println("specialDiscount = " + specialDiscount);
-
-        int discountPrice = order.calcTotalDiscountPrice();
-        System.out.println("discountPrice = " + discountPrice);
-        int totalBenefitPrice = order.calcTotalBenefitPrice();
-        System.out.println("totalBenefitPrice = " + totalBenefitPrice);
-
-        int totalPriceAfterDiscount = order.calcTotalPriceAfterDiscount();
-        System.out.println("totalPriceAfterDiscount = " + totalPriceAfterDiscount);
+        outputView.printResult(order);
 
     }
 }

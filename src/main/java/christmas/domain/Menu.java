@@ -1,6 +1,7 @@
 package christmas.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Menu {
 
@@ -19,4 +20,11 @@ public enum Menu {
         return menu.foods.contains(food);
     }
 
+    public static boolean hasFoodInCategoryByName(final Menu menu, final String name){
+        List<String> names = menu.foods.stream()
+                .map(food -> food.getName())
+                .collect(Collectors.toList());
+        return names.stream()
+                .anyMatch(n -> n.equals(name));
+    }
 }

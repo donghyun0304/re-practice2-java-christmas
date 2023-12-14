@@ -1,6 +1,7 @@
 package christmas.validation;
 
 import christmas.domain.Food;
+import christmas.domain.Menu;
 import christmas.utils.Delimiter;
 import christmas.utils.ErrorMessage;
 
@@ -71,6 +72,17 @@ public class InputValidator {
                 .mapToInt(amount -> Integer.parseInt(amount))
                 .sum();
         if(sum > 20) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_CONDITION);
+        }
+    }
+
+    public static void validateOnlyDrinks(final List<String> orders){
+        List<String> names = orders.stream()
+                .map(order -> order.substring(0, order.indexOf(Delimiter.HYPHEN)))
+                .collect(Collectors.toList());
+        boolean hasOnlyDrinks = names.stream()
+                .allMatch(name -> Menu.hasFoodInCategoryByName(Menu.DRINK, name));
+        if(hasOnlyDrinks){
             throw new IllegalArgumentException(ErrorMessage.NOT_VALID_CONDITION);
         }
     }
