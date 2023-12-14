@@ -3,8 +3,10 @@ package christmas.domain;
 import christmas.domain.condition.Condition;
 import christmas.domain.condition.Conditions;
 import christmas.domain.condition.EventCondition;
+import christmas.domain.condition.PresentCondition;
 import christmas.domain.discount.*;
 
+import javax.swing.text.html.Option;
 import java.util.Optional;
 
 public class Order {
@@ -57,8 +59,22 @@ public class Order {
         return orderedFoods.getAmountOfFoodInCategory(Menu.MAIN) * discount.get().getPrice();
     }
 
+    public int calcSpecialDiscount(){
+        Optional<Discount> discount = discounts.findDiscount(SpecialDiscount.class);
+        Optional<Condition> condition = conditions.findCondition(EventCondition.class);
+        if(discount.isEmpty() || condition.isEmpty()){
+            return ZERO;
+        }
+        return discount.get().getPrice();
+    }
 
-
+    public Optional<Present> getPresent(){
+        Optional<Condition> condition = conditions.findCondition(PresentCondition.class);
+        if(condition.isEmpty()){
+            return Optional.empty();
+        }
+        return Optional.of(new Present());
+    }
 
 
 

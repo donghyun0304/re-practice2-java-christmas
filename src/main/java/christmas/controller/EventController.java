@@ -3,6 +3,7 @@ package christmas.controller;
 import christmas.domain.EventDate;
 import christmas.domain.Foods;
 import christmas.domain.Order;
+import christmas.domain.Present;
 import christmas.domain.condition.*;
 import christmas.domain.discount.Discounts;
 import christmas.service.EventService;
@@ -11,6 +12,7 @@ import christmas.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class EventController {
 
@@ -43,5 +45,8 @@ public class EventController {
         System.out.println("weekdayDiscount = " + weekdayDiscount);
         int weekendDiscount = order.calcWeekendDiscount();
         System.out.println("weekendDiscount = " + weekendDiscount);
+        int specialDiscount = order.calcSpecialDiscount();
+        System.out.println("specialDiscount = " + specialDiscount);
+        
     }
 }
