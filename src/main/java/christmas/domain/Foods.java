@@ -16,6 +16,13 @@ public class Foods {
                 .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
                 .sum();
     }
+
+    public int getAmountOfFoodInCategory(Menu menu){
+        return foods.entrySet().stream()
+                .filter(entry -> Menu.hasFoodInCategory(menu, entry.getKey()))
+                .mapToInt(food -> food.getValue())
+                .sum();
+    }
 //    @Override
 //    public String toString() {
 //        return "Foods{" +

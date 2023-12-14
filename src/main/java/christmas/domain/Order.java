@@ -1,9 +1,15 @@
 package christmas.domain;
 
+import christmas.domain.condition.Condition;
 import christmas.domain.condition.Conditions;
-import christmas.domain.discount.Discounts;
+import christmas.domain.condition.EventCondition;
+import christmas.domain.discount.*;
+
+import java.util.Optional;
 
 public class Order {
+
+    private static final int ZERO = 0;
 
     private final Foods orderedFoods;
     private final Discounts discounts;
@@ -23,6 +29,37 @@ public class Order {
     public int calcTotalPriceBeforeDiscount(){
         return orderedFoods.calcTotalPrice();
     }
+
+    public int calcChristmasDiscount(){
+        Optional<Discount> discount = discounts.findDiscount(ChristmasDiscount.class);
+        Optional<Condition> condition = conditions.findCondition(EventCondition.class);
+        if(discount.isEmpty() || condition.isEmpty()){
+            return ZERO;
+        }
+        return discount.get().getPrice();
+    }
+
+    public int calcWeekdayDiscount(){
+        Optional<Discount> discount = discounts.findDiscount(WeekdayDiscount.class);
+        Optional<Condition> condition = conditions.findCondition(EventCondition.class);
+        if(discount.isEmpty() || condition.isEmpty()){
+            return ZERO;
+        }
+        return orderedFoods.getAmountOfFoodInCategory(Menu.DESSERT) * discount.get().getPrice();
+    }
+
+    public int calcWeekendDiscount(){
+        Optional<Discount> discount = discounts.findDiscount(WeekendDiscount.class);
+        Optional<Condition> condition = conditions.findCondition(EventCondition.class);
+        if(discount.isEmpty() || condition.isEmpty()){
+            return ZERO;
+        }
+        return orderedFoods.getAmountOfFoodInCategory(Menu.MAIN) * discount.get().getPrice();
+    }
+
+
+
+
 
 
 }

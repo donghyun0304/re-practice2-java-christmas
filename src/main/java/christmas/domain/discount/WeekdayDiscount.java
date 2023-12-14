@@ -15,4 +15,6 @@ public class WeekdayDiscount extends Discount{
         return new WeekdayDiscount(TITLE, PRICE);
     }
 
+
+
 }

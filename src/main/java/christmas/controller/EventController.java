@@ -37,6 +37,11 @@ public class EventController {
 
         Order order = Order.of(foods, discounts, conditions);
         int totalPriceBeforeDiscount = order.calcTotalPriceBeforeDiscount();
-
+        int christmasDiscount = order.calcChristmasDiscount();
+        System.out.println("christmasDiscount = " + christmasDiscount);
+        int weekdayDiscount = order.calcWeekdayDiscount();
+        System.out.println("weekdayDiscount = " + weekdayDiscount);
+        int weekendDiscount = order.calcWeekendDiscount();
+        System.out.println("weekendDiscount = " + weekendDiscount);
     }
 }
